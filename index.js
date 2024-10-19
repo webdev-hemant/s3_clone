@@ -5,7 +5,7 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const upload = multer({ dest: "uploads/" }); // Files will be stored in 'uploads' directory
+const upload = multer({ dest: path.join(__dirname, "/uploads") }); // Files will be stored in 'uploads' directory
 const sequelize = require("./src/config/db");
 
 // File upload endpoint
