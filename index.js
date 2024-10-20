@@ -8,6 +8,9 @@ const app = express();
 const upload = multer({ dest: path.join(__dirname, "/uploads") }); // Files will be stored in 'uploads' directory
 const sequelize = require("./src/config/db");
 
+// Serve static files from the 'uploads' folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // File upload endpoint
 app.post("/upload", upload.single("file"), async (req, res) => {
   try {
