@@ -5,11 +5,11 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const upload = multer({ dest: path.join(__dirname, "/uploads") }); // Files will be stored in 'uploads' directory
+const upload = multer({ dest: path.join(__dirname, "/storage") }); // Files will be stored in 'storage' directory
 const sequelize = require("./src/config/db");
 
-// Serve static files from the 'uploads' folder
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Serve static files from the 'storage' folder
+app.use('/storage', express.static(path.join(__dirname, 'storage')));
 
 // File upload endpoint
 app.post("/upload", upload.single("file"), async (req, res) => {
@@ -18,7 +18,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     const fileData = {
       filename: req.file.filename, // Matches 'filename' in the model
       originalName: req.file.originalname, // Captures original file name
-      path: path.join(__dirname, "uploads", req.file.filename), // Matches 'path' in the model
+      path: path.join(__dirname, "storage", req.file.filename), // Matches 'path' in the model
       mimeType: req.file.mimetype, // Matches 'mimeType' in the model
       size: req.file.size, // Matches 'size' in the model
       owner: req.body.owner || "defaultOwner", // Matches 'owner' in the model, defaulting if no owner provided
