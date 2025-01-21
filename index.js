@@ -56,7 +56,7 @@ app.get("/", async (req, res) => {
 
 // Image upload endpoint
 // app.post("/upload-image", uploadImage.single("file"), async (req, res) => {
-app.get("/upload-image", async (req, res) => {
+app.post("/upload-image", async (req, res) => {
   try {
     const db = await sequelize.sync({ force: false });
     console.log({ db });
