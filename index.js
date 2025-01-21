@@ -31,7 +31,8 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.send({ message: "Hellow Hemant boss!" });
+  const dbName = sequelize.getDatabaseName();
+  res.send({ message: "Hellow Hemant boss!", dbName });
 });
 
 // Image upload endpoint
