@@ -45,21 +45,22 @@ app.get("/", async (req, res) => {
 });
 
 // Image upload endpoint
-app.post("/upload-image", uploadImage.single("file"), async (req, res) => {
+// app.post("/upload-image", uploadImage.single("file"), async (req, res) => {
+app.post("/upload-image", async (req, res) => {
   try {
-    const imageDetails = {
-      filename: req.file.filename,
-      originalName: req.file.originalname,
-      path: path.join("storage/images", req.file.filename),
-      mimeType: req.file.mimetype,
-      size: req.file.size,
-      owner: req.body.owner || "defaultOwner",
-    };
+    // const imageDetails = {
+    //   filename: req.file.filename,
+    //   originalName: req.file.originalname,
+    //   path: path.join("storage/images", req.file.filename),
+    //   mimeType: req.file.mimetype,
+    //   size: req.file.size,
+    //   owner: req.body.owner || "defaultOwner",
+    // };
 
-    // Save image details in the database
-    const image = await File.create(imageDetails);
+    // // Save image details in the database
+    // const image = await File.create(imageDetails);
 
-    res.json({ message: "Image uploaded successfully", image });
+    res.json({ message: "Image uploaded successfully", image: 'called' });
   } catch (error) {
     res
       .status(500)
