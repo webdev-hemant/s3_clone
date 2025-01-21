@@ -11,13 +11,13 @@ const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
   dialectModule: pg,
   logging: false,
   dialectOptions: {
-    ssl: false
-      // NODE_ENV === "PROD"
-      //   ? {
-      //       require: true,
-      //       rejectUnauthorized: false,
-      //     }
-      //   : false,
+    ssl:
+      NODE_ENV === "PROD"
+        ? {
+            require: true,
+            rejectUnauthorized: false,
+          }
+        : false,
   },
 });
 
