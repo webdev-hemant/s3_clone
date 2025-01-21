@@ -30,9 +30,18 @@ app.use(
   express.static(path.join(__dirname, "storage/images"))
 );
 
-app.get("/", (req, res) => {
-  const dbName = sequelize.getDatabaseName();
-  res.send({ message: "Hellow Hemant boss!", dbName });
+app.get("/", async (req, res) => {
+  try {
+    const db = await sequelize.sync({ force: false });
+    console.log({ db });
+    res.send({
+      message: "Hellow Hemant boss!",
+      db: db.config,
+    });
+  } catch (error) {
+    console.error("Unable to create tables:", error);
+    res.send({ err: error.message });
+  }
 });
 
 // Image upload endpoint
