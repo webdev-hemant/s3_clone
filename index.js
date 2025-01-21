@@ -24,7 +24,7 @@ const imageStorage = multer.diskStorage({
 
 const uploadImage = multer({ storage: imageStorage });
 
-app.use(express.json());
+app.use('*', express.json());
 
 // Serve static files from 'storage/images'
 app.use(
