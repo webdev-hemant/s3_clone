@@ -30,6 +30,10 @@ app.use(
   express.static(path.join(__dirname, "storage/images"))
 );
 
+app.get("/", (req, res) => {
+  res.send({ message: "Hellow Hemant boss!" });
+});
+
 // Image upload endpoint
 app.post("/upload-image", uploadImage.single("file"), async (req, res) => {
   try {
