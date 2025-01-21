@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const sequelize = require("./src/config/db");
 const app = express();
+const cors = require('cors');
 const upload = multer({ dest: path.join(__dirname, "/storage") }); // Files will be stored in 'storage' directory
 
 // Multer setup for images
@@ -24,7 +25,13 @@ const imageStorage = multer.diskStorage({
 
 const uploadImage = multer({ storage: imageStorage });
 
-app.use('*', express.json());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
+app.use(express.json());
 
 // Serve static files from 'storage/images'
 app.use(
