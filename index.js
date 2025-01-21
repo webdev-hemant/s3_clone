@@ -1,3 +1,4 @@
+require("dotenv").config({});
 const express = require("express");
 const multer = require("multer");
 const File = require("./src/models/file");
@@ -5,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const sequelize = require("./src/config/db");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 const upload = multer({ dest: path.join(__dirname, "/storage") }); // Files will be stored in 'storage' directory
 
 // Multer setup for images
